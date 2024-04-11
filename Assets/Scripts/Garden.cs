@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using MiniFarm.Items;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +10,8 @@ namespace MiniFarm
         [SerializeField] private SeedItem _seedItem;
         [SerializeField] private float _currentTime = 0;
 
-        [SerializeField] private Image itemSprite;
+        [SerializeField] private Sprite plowSprite;
+        [SerializeField] private SpriteRenderer itemSprite;
 
         public GardenState CurrentState => _state;
         private GardenState _state = GardenState.EMPTY;
@@ -20,7 +21,7 @@ namespace MiniFarm
             switch (_state)
             {
                 case GardenState.EMPTY when
-                    player.ActiveItem.GetType() == typeof(SeedItem):
+                    player.ActiveItem.item is SeedItem :
                     Plant(player);
                     break;
                 case GardenState.READY:
@@ -28,8 +29,8 @@ namespace MiniFarm
                     Collect(player);
                     break;
                 case GardenState.PLOW when
-                    player.ActiveItem.item.GetType() == typeof(ToolItem) &&
-                    ((ToolItem)player.ActiveItem.item).type == ToolType.HOE &&
+                    player.ActiveItem.item is ToolItem item &&
+                    item.type == ToolType.HOE &&
                     ((ToolItemInstance)player.ActiveItem).currentDurability > 0:
                     Plow(player);
                     break;
@@ -51,17 +52,20 @@ namespace MiniFarm
         {
             if (_state == GardenState.READY)
                 player.GiveItem(_seedItem.growItem);
+            
+            NextState(GardenState.PLOW);
         }
 
         public void Plow(Player player)
         {
             ((ToolItemInstance)player.ActiveItem).currentDurability -= 1;
 
-            _state = GardenState.EMPTY;
+            NextState(GardenState.EMPTY);
         }
 
         public void NextState(GardenState nextState)
         {
+            _currentTime = 0;
             switch (nextState)
             {
                 case GardenState.EMPTY:
@@ -71,14 +75,12 @@ namespace MiniFarm
                     itemSprite.sprite = _seedItem.sprite;
                     break;
                 case GardenState.READY:
-                    _currentTime = 0;
                     itemSprite.sprite = _seedItem.growItem.item.sprite;
                     break;
                 case GardenState.PLOW:
-                    itemSprite.sprite = null;
+                    itemSprite.sprite = plowSprite;
                     break;
                 case GardenState.LOST:
-                    _currentTime = 0;
                     itemSprite.sprite = _seedItem.lostSprite;
                     break;
             }
@@ -110,6 +112,28 @@ namespace MiniFarm
                     }
                 }
             }
+        }
+
+        public string Save()
+        {
+            return JsonUtility.ToJson(new Dictionary<string, object>
+            {
+                { "SeedItem", _seedItem },
+                { "CurrentTime", _currentTime },
+                { "CurrentState", CurrentState }
+            });
+
+        }
+
+        public void Load(string data)
+        {
+            Dictionary<string, object> loadedData = JsonUtility.FromJson<Dictionary<string, object>>(data);
+            
+            _seedItem = loadedData["SeedItem"] as SeedItem;
+            _currentTime = loadedData["CurrentTime"] as float? ?? 0;
+            _state = loadedData["CurrentState"] is GardenState ? (GardenState)loadedData["CurrentState"] : GardenState.EMPTY;
+
+            NextState(_state);
         }
     }
 }

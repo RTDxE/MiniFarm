@@ -14,11 +14,16 @@ namespace MiniFarm.UI
 
         private Button _cellButton;
         private Inventory _inventory;
+        private Image _backgroundImage;
+
+        [SerializeField] private Sprite normalSprite;
+        [SerializeField] private Sprite pressedSprite;
         
         private void Start()
         {
             _cellButton = GetComponent<Button>();
             _cellButton.onClick.AddListener(Pressed);
+            _backgroundImage = GetComponent<Image>();
         }
 
         public void SetInventory(Inventory inventory)
@@ -29,7 +34,7 @@ namespace MiniFarm.UI
                 _cellButton.onClick.AddListener(Pressed);
         }
 
-        private void Pressed()
+        public void Pressed()
         {
             _inventory.CellPressed(this);
         }
@@ -53,6 +58,16 @@ namespace MiniFarm.UI
                     count.text = "";
                 }
             }
+        }
+
+        public void MarkPressed()
+        {
+            _backgroundImage.sprite = pressedSprite;
+        }
+        
+        public void UnmarkPressed()
+        {
+            _backgroundImage.sprite = normalSprite;
         }
     }
 }

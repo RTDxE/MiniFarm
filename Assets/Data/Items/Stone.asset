@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Stone
   sprite: {fileID: -1976391978, guid: fffcd71df4ddd19458ee074d98298018, type: 3}
+  stackable: 1
+  stackCount: 24
   buyPrice: 10
   buyCount: 4
   sellable: 1
   sellPrice: 3
-  growingTime: 3
-  growItems:
-  - item: {fileID: 11400000}
+  growTime: 3
+  growItem:
+    item: {fileID: 11400000}
     count: 3
+  lostTime: 3
+  lostSprite: {fileID: 161342283, guid: fffcd71df4ddd19458ee074d98298018, type: 3}

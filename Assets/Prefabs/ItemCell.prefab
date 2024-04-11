@@ -212,6 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 5771991945580574396}
   count: {fileID: 6849531053611772333}
+  normalSprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  pressedSprite: {fileID: -2114399710, guid: 3ebd7d3d27765144a8587138feda34e5, type: 3}
 --- !u!1 &6454950747653508447
 GameObject:
   m_ObjectHideFlags: 0

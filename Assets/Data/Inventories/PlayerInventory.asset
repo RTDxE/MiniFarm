@@ -14,19 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryName: Player
   items:
-  - item: {fileID: 0}
-    count: 0
+  - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
+    count: 9
+  - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
+    count: 3
+  - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
+    count: 1
+  - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
+    count: 3
+  - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
+    count: 3
+  - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
+    count: 3
   - item: {fileID: 0}
     count: 0
   - item: {fileID: 0}
     count: 0
   - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
-    count: 12
-  - item: {fileID: 0}
-    count: 0
-  - item: {fileID: 0}
-    count: 0
-  - item: {fileID: 0}
-    count: 0
-  - item: {fileID: 0}
-    count: 0
+    count: 2

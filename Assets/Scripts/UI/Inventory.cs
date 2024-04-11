@@ -11,6 +11,7 @@ namespace MiniFarm.UI
         private void Start()
         {
             inventory.Load();
+            inventory.onInventoryUpdated += UpdateInventory;
             UpdateInventory();
 
             ItemCell _itemCell;
@@ -23,6 +24,7 @@ namespace MiniFarm.UI
 
         private void OnDestroy()
         {
+            inventory.onInventoryUpdated -= UpdateInventory;
             inventory.Save();
         }
 

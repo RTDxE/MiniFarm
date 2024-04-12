@@ -15,17 +15,17 @@ MonoBehaviour:
   inventoryName: Player
   items:
   - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
-    count: 9
+    count: 7
   - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
-    count: 3
+    count: 0
   - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
-    count: 1
+    count: 0
   - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
-    count: 3
+    count: 0
   - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
-    count: 3
+    count: 0
   - item: {fileID: 11400000, guid: 79ebf97a0bbd2074491478e3e3a9fcb5, type: 2}
-    count: 3
+    count: 0
   - item: {fileID: 0}
     count: 0
   - item: {fileID: 0}

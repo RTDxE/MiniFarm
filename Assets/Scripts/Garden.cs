@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using MiniFarm.Items;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MiniFarm
 {
@@ -21,7 +20,7 @@ namespace MiniFarm
             switch (_state)
             {
                 case GardenState.EMPTY when
-                    player.ActiveItem.item is SeedItem :
+                    player.PlayerInventory.ActiveItem.item is SeedItem :
                     Plant(player);
                     break;
                 case GardenState.READY:
@@ -29,9 +28,9 @@ namespace MiniFarm
                     Collect(player);
                     break;
                 case GardenState.PLOW when
-                    player.ActiveItem.item is ToolItem item &&
+                    player.PlayerInventory.ActiveItem.item is ToolItem item &&
                     item.type == ToolType.HOE &&
-                    ((ToolItemInstance)player.ActiveItem).currentDurability > 0:
+                    ((ToolItemInstance)player.PlayerInventory.ActiveItem).currentDurability > 0:
                     Plow(player);
                     break;
             }
@@ -39,7 +38,7 @@ namespace MiniFarm
 
         public void Plant(Player player)
         {
-            var item = player.TakeActiveItem();
+            var item = player.PlayerInventory.TakeActiveItem();
             if (item == null)
                 return;
 
@@ -51,14 +50,14 @@ namespace MiniFarm
         public void Collect(Player player)
         {
             if (_state == GardenState.READY)
-                player.GiveItem(_seedItem.growItem);
+                player.PlayerInventory.GiveItem(_seedItem.growItem);
             
             NextState(GardenState.PLOW);
         }
 
         public void Plow(Player player)
         {
-            ((ToolItemInstance)player.ActiveItem).currentDurability -= 1;
+            ((ToolItemInstance)player.PlayerInventory.ActiveItem).currentDurability -= 1;
 
             NextState(GardenState.EMPTY);
         }

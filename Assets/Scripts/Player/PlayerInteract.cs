@@ -3,10 +3,10 @@ using UnityEngine.Events;
 
 namespace MiniFarm
 {
-    [RequireComponent(typeof(Player))]
+    [RequireComponent(typeof(Player.Player))]
     public class PlayerInteract : MonoBehaviour
     {
-        private Player _player;
+        private Player.Player _player;
         private InteractableObject _lastObject;
 
         [SerializeField] private UnityEvent onEnterInteract;
@@ -14,7 +14,7 @@ namespace MiniFarm
 
         private void Start()
         {
-            _player = GetComponent<Player>();
+            _player = GetComponent<Player.Player>();
         }
 
         private void Update()

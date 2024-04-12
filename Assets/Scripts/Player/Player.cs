@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MiniFarm
+namespace MiniFarm.Player
 {
     public class Player: MonoBehaviour
     {

@@ -15,7 +15,7 @@ namespace MiniFarm
         public GardenState CurrentState => _state;
         private GardenState _state = GardenState.EMPTY;
 
-        public void Interact(Player player)
+        public void Interact(Player.Player player)
         {
             switch (_state)
             {
@@ -36,7 +36,7 @@ namespace MiniFarm
             }
         }
 
-        public void Plant(Player player)
+        public void Plant(Player.Player player)
         {
             var item = player.PlayerInventory.TakeActiveItem();
             if (item == null)
@@ -47,7 +47,7 @@ namespace MiniFarm
             NextState(GardenState.GROW);
         }
 
-        public void Collect(Player player)
+        public void Collect(Player.Player player)
         {
             if (_state == GardenState.READY)
                 player.PlayerInventory.GiveItem(_seedItem.growItem);
@@ -55,7 +55,7 @@ namespace MiniFarm
             NextState(GardenState.PLOW);
         }
 
-        public void Plow(Player player)
+        public void Plow(Player.Player player)
         {
             ((ToolItemInstance)player.PlayerInventory.ActiveItem).currentDurability -= 1;
 
